@@ -3,17 +3,17 @@ package com.example.quakereport;
 import java.util.Date;
 
 public class Earthquake {
-    private String mMagnitude;
+    private double mMagnitude;
     private String mLocation;
-    private String mDate;
+    private long mTimeInMilliSeconds;
 
-    Earthquake(String magnitude, String location, String date) {
+    Earthquake(double magnitude, String location, long timeInMilliSeconds) {
         mMagnitude = magnitude;
         mLocation = location;
-        mDate = date;
+        mTimeInMilliSeconds = timeInMilliSeconds;
     }
 
-    public String getMagnitude() {
+    public double getMagnitude() {
         return mMagnitude;
     }
 
@@ -21,7 +21,7 @@ public class Earthquake {
         return mLocation;
     }
 
-    public String getDate() {
-        return mDate;
+    public long getTimeInMilliSeconds() {
+        return mTimeInMilliSeconds;
     }
 }
