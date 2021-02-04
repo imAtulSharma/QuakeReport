@@ -10,6 +10,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -22,6 +23,9 @@ public class EarthquakeActivity extends AppCompatActivity {
     /** URL for earthquake data from the USGS dataset */
     private static final String USGS_REQUEST_URL =
             "https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&eventtype=earthquake&orderby=time&limit=50";
+
+    /** TextView that is displayed when the list is empty */
+    private TextView mEmptyStateTextView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,6 +52,9 @@ public class EarthquakeActivity extends AppCompatActivity {
         // Find a reference to the {@link ListView} in the layout
 
         ListView earthquakeListView = (ListView) findViewById(R.id.list);
+
+        mEmptyStateTextView = findViewById(R.id.empty_view);
+        earthquakeListView.setEmptyView(mEmptyStateTextView);
 
         // Create a new {@link ArrayAdapter} of earthquakes
         mAdapter = new EarthquakeAdapter(this, R.layout.eathquake_list_item, new ArrayList<Earthquake>());
@@ -82,6 +89,10 @@ public class EarthquakeActivity extends AppCompatActivity {
 
         @Override
         protected void onPostExecute(List<Earthquake> data) {
+
+            // Set empty state text to display "No earthquakes found."
+            mEmptyStateTextView.setText(R.string.no_earthquakes);
+
             // Clear the adapter of previous earthquake data
             mAdapter.clear();
 
