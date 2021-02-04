@@ -178,6 +178,16 @@ public final class QueryUtils {
      * Query the USGS dataset and return a list of {@link Earthquake} objects.
      */
     public static ArrayList<Earthquake> fetchEarthquakeData(String requestUrl) {
+
+        /**
+         * To put the current thread on sleep(temporarily cease execution) for the time of given milliseconds.
+         */
+        try {
+            Thread.sleep(0);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
         // Create URL object
         URL url = createUrl(requestUrl);
 
